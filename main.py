@@ -9,7 +9,10 @@ from pathlib import Path
 
 
 def main() -> None:
-    line = Path(__file__).with_name("entry.txt").read_text(encoding="utf-8").strip()
+    path = Path(__file__).with_name("entry.txt")
+    line = path.read_text(encoding="utf-8").strip()
+    if not line:
+        raise SystemExit(f"{path.name} is empty: the entry must be exactly one line")
     print(line)
 
 
